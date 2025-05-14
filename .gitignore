@@ -1,8 +1,12 @@
 # history
 .history
 
-
 # venv
 .venv
 
+# idea
+.idea
+
+# pycharm
+*.iml
 
