@@ -1,0 +1,22 @@
+name: "Feature"
+description: "기능 template"
+labels: "Feature"
+body:
+  - type: textarea
+    attributes:
+      label: Describe
+      description: 기능 작성
+      placeholder: 기능 작성
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: TO-DO
+      description: TO-DO 작성
+      placeholder: TO-DO 작성
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: More
+      description: 하고 싶은 말
