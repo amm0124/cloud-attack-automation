@@ -1,0 +1,55 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+
+# PostgreSQL (SQLAlchemy + psycopg)
+sqlalchemy==2.0.41
+psycopg==3.2.9
+
+# MongoDB
+pymongo==4.13.0
+
+# Pydantic
+pydantic==2.11.4
+pydantic-settings==2.9.1
+
+# validator
+email-validator==2.2.0
+
+# dotenv
+python-dotenv==1.1.0
+
+# Authentication
+python-jose[cryptography]==3.4.0
+passlib[bcrypt]==1.7.4
+
+# Form multipart
+python-multipart==0.0.20
+
+# github secret key
+detect-secrets==1.5.0
+
+# boto3
+boto3==1.38.17
+# botocore는 boto3의 의존성이므로 명시적 버전 관리가 필요하면 추가
+# botocore==X.Y.Z
+
+# async
+aiofiles==24.1.0
+
+# nmap
+python-nmap==0.7.1
+
+# lxml (nmap 등의 의존성으로 필요할 수 있음)
+lxml==5.4.0
+
+# zaproxy
+zaproxy==0.4.0
+
+# setuptools (pkg_resources 등을 위해 필요)
+setuptools
+
+markdown
+
+tabulate
+
+paramiko
