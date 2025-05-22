@@ -8,7 +8,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   const handleScanningClick = () => {
-    navigate('/scanning');
+    navigate('/collecting');
   };
 
   return (
