@@ -50,6 +50,8 @@ setuptools
 
 markdown
 
+paramiko
+
 tabulate
 
-paramiko
+trufflehog
