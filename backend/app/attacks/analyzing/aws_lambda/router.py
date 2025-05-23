@@ -1,4 +1,4 @@
-from fastapi import APIRouter, WebSocket, Query
+from fastapi import APIRouter, WebSocket
 import datetime
 import asyncio
 import json
@@ -6,10 +6,10 @@ import os
 
 router = APIRouter()
 
-@router.websocket("/ws/analyzing/aws/s3")
-async def analyze_aws_s3_policy(websocket: WebSocket):
+@router.websocket("/ws/analyzing/aws/lambda")
+async def analyze_aws_lambda_policy(websocket: WebSocket):
     await websocket.accept()
-    await websocket.send_text(json.dumps({"type": "log", "message": "[AWS s3 정책 분석] - WebSocket 연결됨. 분석 요청을 기다립니다..."}))
+    await websocket.send_text(json.dumps({"type": "log", "message": "[AWS aws_lambda 정책 분석] - WebSocket 연결됨. 분석 요청을 기다립니다..."}))
 
     try:
         init_data = await websocket.receive_text()
@@ -22,9 +22,9 @@ async def analyze_aws_s3_policy(websocket: WebSocket):
         await websocket.send_text(json.dumps({"type": "log", "message": secret_key}))
         await websocket.send_text(json.dumps({"type": "log", "message": region}))
 
-        SCRIPT_PATH = os.path.join(os.path.dirname(__file__), "s3_analyzer.py")
+        SCRIPT_PATH = os.path.join(os.path.dirname(__file__), "lambda_analyzer.py")
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        output_file = f"s3_analyzer_{timestamp}.md"
+        output_file = f"lambda_analyzer_{timestamp}.md"
 
         process = await asyncio.create_subprocess_exec(
             "python", SCRIPT_PATH,

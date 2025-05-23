@@ -23,7 +23,7 @@ function App() {
         <Route path="/analyzing/aws/iam" element={<IamAnalyzingPage />} />
         <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />
         <Route path="/analyzing/aws/s3" element={<S3AnalyzingPage />} />
-        {/*<Route path="/analyzing/aws/lambda" element={<LambdaAnalyzingPage />} />*/}
+        <Route path="/analyzing/aws/lambda" element={<LambdaAnalyzingPage />} />
 
 
 
