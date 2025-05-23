@@ -1,8 +1,5 @@
 import boto3
 import json
-import base64
-import zipfile
-import io
 import argparse
 from datetime import datetime
 from botocore.exceptions import ClientError
@@ -267,7 +264,7 @@ def check_sensitive_data_in_environment(env_vars):
 
 def generate_report(session, access_key, secret_key, region):
     """Lambda 보안 분석 보고서 생성"""
-    lambda_client = session.client('aws_lambda')
+    lambda_client = session.client('lambda')
     kms_client = session.client('kms')
 
     report = "# Lambda 보안 분석 보고서\n\n"
