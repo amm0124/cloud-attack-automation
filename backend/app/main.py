@@ -3,6 +3,8 @@ from fastapi import APIRouter
 from attacks.collecting.github.router import router as github_collector_router
 from attacks.analyzing.iam.router import router as iam_analyzer_router
 from attacks.analyzing.ec2.router import router as ec2_analyzer_router
+from attacks.analyzing.s3.router import router as s3_analyzer_router
+
 from fastapi.responses import StreamingResponse
 from fastapi import HTTPException
 import os
@@ -10,6 +12,7 @@ app = FastAPI()
 app.include_router(github_collector_router)
 app.include_router(iam_analyzer_router)
 app.include_router(ec2_analyzer_router)
+app.include_router(s3_analyzer_router)
 REPORTS_DIR = "/Users/geonho/workspace/cloud-attack-automation/backend/app" # 보고서 저장 경로
 
 router = APIRouter()

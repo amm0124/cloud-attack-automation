@@ -7,6 +7,8 @@ import CollectingIndexPage from './pages/collecting';
 import AnalyzingIndexPage from './pages/analyzing';
 import IamAnalyzingPage from "./pages/analyzing/iam/IamAnalyzePage";
 import Ec2AnalyzingPage from "./pages/analyzing/ec2/Ec2AnalyzePage";
+import S3AnalyzingPage from "./pages/analyzing/s3/S3AnalyzePage";
+import LambdaAnalyzingPage from "./pages/analyzing/lambda/LambdaAnalyzePage";
 
 import './App.css';
 
@@ -20,16 +22,11 @@ function App() {
         <Route path="/analyzing" element={<AnalyzingIndexPage />} />
         <Route path="/analyzing/aws/iam" element={<IamAnalyzingPage />} />
         <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />
-   {/*     <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />
-        <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />*/}
+        <Route path="/analyzing/aws/s3" element={<S3AnalyzingPage />} />
+        {/*<Route path="/analyzing/aws/lambda" element={<LambdaAnalyzingPage />} />*/}
 
 
 
-        {/* GitHub 스캔 페이지 */}
-
-        {/* 추후 다른 페이지 추가 */}
-        {/* <Route path="/vulnerability" element={<VulnerabilityPage />} /> */}
-        {/* <Route path="/attack" element={<AttackPage />} /> */}
       </Routes>
     </Router>
   );
