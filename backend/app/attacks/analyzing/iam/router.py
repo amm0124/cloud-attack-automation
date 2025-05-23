@@ -6,23 +6,31 @@ import os
 
 router = APIRouter()
 
-@router.websocket("/ws/collecting/github")
-async def collect_github_credentials(websocket: WebSocket):
+@router.websocket("/ws/analyzing/aws/iam")
+async def analyze_aws_iam_policy(websocket: WebSocket):
     await websocket.accept()
-    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. 분석 요청을 기다립니다..."}))
+    await websocket.send_text(json.dumps({"type": "log", "message": "[AWS IAM 정책 분석] - WebSocket 연결됨. 분석 요청을 기다립니다..."}))
 
     try:
         init_data = await websocket.receive_text()
         data = json.loads(init_data)
-        github_url = data.get("github_url")
+        access_key = data.get("access_key")
+        secret_key = data.get("secret_key")
+        region = data.get("region")
 
-        SCRIPT_PATH = os.path.join(os.path.dirname(__file__), "gitleaks_trufflehog.py")
+        await websocket.send_text(json.dumps({"type": "log", "message": access_key}))
+        await websocket.send_text(json.dumps({"type": "log", "message": secret_key}))
+        await websocket.send_text(json.dumps({"type": "log", "message": region}))
+
+        SCRIPT_PATH = os.path.join(os.path.dirname(__file__), "iam_analyzer.py")
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        output_file = f"collect_github_credentials_{timestamp}.md"
+        output_file = f"iam_analyzer_{timestamp}.md"
 
         process = await asyncio.create_subprocess_exec(
             "python", SCRIPT_PATH,
-            github_url,
+            access_key,
+            secret_key,
+            region,
             "-o", output_file,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,
@@ -43,7 +51,5 @@ async def collect_github_credentials(websocket: WebSocket):
         await websocket.send_text(json.dumps({"type": "error", "message": str(e)}))
 
     await websocket.close()
-
-
 
 

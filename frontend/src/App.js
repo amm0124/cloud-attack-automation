@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import GitHubCollectPage from './pages/collecting/github/GitHubCollectPage';
 import CollectingIndexPage from './pages/collecting';
+import AnalyzingIndexPage from './pages/analyzing';
+import IamAnalyzingPage from "./pages/analyzing/iam/IamAnalyzePage";
+
 
 import './App.css';
 
@@ -14,6 +17,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/collecting" element={<CollectingIndexPage />} />
         <Route path="/collecting/github" element={<GitHubCollectPage />} />
+        <Route path="/analyzing" element={<AnalyzingIndexPage />} />
+        <Route path="/analyzing/aws/iam" element={<IamAnalyzingPage />} />
+
         {/* GitHub 스캔 페이지 */}
 
         {/* 추후 다른 페이지 추가 */}

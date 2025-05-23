@@ -11,6 +11,15 @@ function HomePage() {
     navigate('/collecting');
   };
 
+  const handleAnalyzingClick = () => {
+    navigate('/analyzing');
+  };
+
+  const handleAttackClick = () => {
+    navigate('/attack');
+  };
+
+
   return (
     <Layout>
       <h2>주요 기능 선택</h2>
@@ -30,26 +39,27 @@ function HomePage() {
 
         <div className="option-card">
           <h3>취약점 분석</h3>
-          <p>발견된 취약점을 분석하고 평가 보고서를 생성합니다.</p>
+          <p>수집한 자격 증명 정보를 통해 접근 가능한 AWS 서비스 분석</p>
           <ul>
-            <li>취약점 심각도 평가</li>
-            <li>보안 위험 분석</li>
-            <li>해결책 제안</li>
-            <li>보고서 생성</li>
+            <li>IAM</li>
+            <li>EC2</li>
+            <li>S3</li>
+            <li>Lambda</li>
           </ul>
-          <button onClick={() => alert('취약점 분석 기능으로 이동합니다.')}>취약점 분석</button>
+          <button onClick={handleAnalyzingClick}>취약점 분석 시작</button>
         </div>
 
         <div className="option-card">
           <h3>공격 시뮬레이션</h3>
           <p>발견된 취약점을 기반으로 공격 시뮬레이션을 수행합니다.</p>
           <ul>
-            <li>침투 테스트</li>
-            <li>권한 상승 테스트</li>
-            <li>악성코드 탐지 우회 테스트</li>
-            <li>시스템 보안 검증</li>
+            <li>ㅇㅇ</li>
+            <li>ㅇㅇ</li>
+            <li>ㅇㅇ</li>
+            <li>ㅇㅇ</li>
           </ul>
-          <button onClick={() => alert('공격 시뮬레이션 기능으로 이동합니다.')}>공격 시뮬레이션</button>
+
+          <button onClick={handleAttackClick}>공격 시뮬레이션 시작</button>
         </div>
       </div>
     </Layout>
