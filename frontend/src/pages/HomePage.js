@@ -16,7 +16,7 @@ function HomePage() {
   };
 
   const handleAttackClick = () => {
-    navigate('/attack');
+    navigate('/attacks');
   };
 
 
