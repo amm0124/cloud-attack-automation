@@ -24,7 +24,7 @@ async def analyze_aws_s3_policy(websocket: WebSocket):
 
         SCRIPT_PATH = os.path.join(os.path.dirname(__file__), "s3_analyzer.py")
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        output_file = f"iam_analyzer_{timestamp}.md"
+        output_file = f"s3_analyzer_{timestamp}.md"
 
         process = await asyncio.create_subprocess_exec(
             "python", SCRIPT_PATH,
