@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi import APIRouter
-from app.collecting.github.router import router as github_collector_router
-from app.analyzing import router as iam_analyzer_router
-from app.analyzing.ec2.router import router as ec2_analyzer_router
-from app.analyzing import router as s3_analyzer_router
-from app.analyzing import router as lambda_analyzer_router
+from collecting.github.router import router as github_collector_router
+from analyzing.iam.router import router as iam_analyzer_router
+from analyzing.ec2.router import router as ec2_analyzer_router
+from analyzing.s3.router import router as s3_analyzer_router
+from analyzing.aws_lambda.router import router as lambda_analyzer_router
 
 from fastapi.responses import StreamingResponse
 from fastapi import HTTPException
