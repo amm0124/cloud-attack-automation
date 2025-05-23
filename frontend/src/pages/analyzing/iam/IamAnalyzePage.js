@@ -10,7 +10,12 @@ function IamAnalyzingPage() {
   const wsRef = useRef(null);
 
   const startScan = () => {
-    const githubUrl = document.getElementById('target').value;
+
+    const accessKey = document.getElementById('access-key').value;
+    const secretKey = document.getElementById('secret-key').value;
+    const region = document.getElementById('region').value;
+
+
 
     // 상태 초기화
     setLogs('');
@@ -29,7 +34,9 @@ function IamAnalyzingPage() {
     ws.onopen = () => {
       // GitHub URL 전송
       ws.send(JSON.stringify({
-        github_url: githubUrl
+        access_key : accessKey,
+        secret_key : secretKey,
+        region : region
       }));
     };
 
@@ -76,7 +83,7 @@ function IamAnalyzingPage() {
             <label htmlFor="target">수집한 Access</label>
             <input
               type="text"
-              id="target"
+              id="access-key"
               placeholder="AKIAxxxxxxxxxxxxxxxxxx"
             />
           </div>
@@ -85,8 +92,17 @@ function IamAnalyzingPage() {
             <label htmlFor="target">수집한 Secret</label>
             <input
               type="text"
-              id="target"
+              id="secret-key"
               placeholder="dasdasdasdasdadsadasdasdasdasdasd"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="target">수집한 region</label>
+            <input
+              type="text"
+              id="region"
+              placeholder="ap-northeast-2"
             />
           </div>
 
