@@ -6,7 +6,7 @@ import GitHubCollectPage from './pages/collecting/github/GitHubCollectPage';
 import CollectingIndexPage from './pages/collecting';
 import AnalyzingIndexPage from './pages/analyzing';
 import IamAnalyzingPage from "./pages/analyzing/iam/IamAnalyzePage";
-
+import Ec2AnalyzingPage from "./pages/analyzing/ec2/Ec2AnalyzePage";
 
 import './App.css';
 
@@ -19,6 +19,11 @@ function App() {
         <Route path="/collecting/github" element={<GitHubCollectPage />} />
         <Route path="/analyzing" element={<AnalyzingIndexPage />} />
         <Route path="/analyzing/aws/iam" element={<IamAnalyzingPage />} />
+        <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />
+   {/*     <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />
+        <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />*/}
+
+
 
         {/* GitHub 스캔 페이지 */}
 
