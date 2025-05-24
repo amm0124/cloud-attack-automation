@@ -22,9 +22,9 @@ def get_account_info(session):
     except Exception as e:
         return {"error": str(e)}
 
-
+# AWS 관리형 정책 분석
 def analyze_aws_managed_policies(iam):
-    """AWS 관리형 정책 분석"""
+
     high_risk_policies = []
     high_risk_names = ['AdministratorAccess', 'PowerUserAccess']
 
@@ -248,7 +248,7 @@ def analyze_service_control_policies(organizations):
         return [{"error": str(e)}]
 
 
-def generate_report(session, access_key, secret_key, region):
+def analyze_iam(session, access_key, secret_key, region):
     """전체 보고서 생성"""
     iam = session.client('iam')
     organizations = session.client('organizations')
@@ -421,7 +421,7 @@ def main():
     session = create_aws_session(args.access_key, args.secret_key, args.region)
 
     # 보고서 생성
-    report = generate_report(session, args.access_key, args.secret_key, args.region)
+    report = analyze_iam(session, args.access_key, args.secret_key, args.region)
 
     # 보고서 저장
     save_report(report, args.output)
