@@ -13,7 +13,12 @@ function DirectTemporaryKeyAttackPage() {
   const wsRef = useRef(null);
 
   const startScan = () => {
-    const githubUrl = document.getElementById('target').value;
+    const accessKey = document.getElementById('access-key').value;
+    const secretKey = document.getElementById('secret-key').value;
+    const region = document.getElementById('region').value;
+    const instanceId = document.getElementById('instance-id').value;
+
+
     const output = document.getElementById('output');
 
     // 상태 초기화
@@ -27,13 +32,16 @@ function DirectTemporaryKeyAttackPage() {
     }
 
     // 새 WebSocket 연결 생성
-    const ws = new WebSocket('ws://localhost:8000/ws/attacks/indirect/docker/');
+    const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/temporary-key');
     wsRef.current = ws;
 
     ws.onopen = () => {
       // GitHub URL 전송
       ws.send(JSON.stringify({
-        github_url: githubUrl
+        access_key: accessKey,
+        secret_key: secretKey,
+        region: region,
+        instance_id: instanceId,
       }));
     };
 
@@ -77,13 +85,41 @@ function DirectTemporaryKeyAttackPage() {
 
         <div className="scan-form">
           <div className="form-group">
-            <label htmlFor="target">Docker</label>
+            <label htmlFor="target">access key</label>
             <input
               type="text"
-              id="target"
-              placeholder="Docker"
+              id="access-key"
+              placeholder="access key"
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="target">secret key</label>
+            <input
+              type="text"
+              id="secret-key"
+              placeholder="secret key"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="target">region</label>
+            <input
+              type="text"
+              id="region"
+              placeholder="ap-northeast-2"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="target">instance id</label>
+            <input
+              type="text"
+              id="instance-id"
+              placeholder="instance id"
+            />
+          </div>
+
 
           <div className="button-group">
             <button className="start-btn" onClick={startScan}>스캔 시작</button>
