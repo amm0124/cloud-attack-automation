@@ -13,7 +13,7 @@ function DirectSshBruteForceAttackPage() {
   const wsRef = useRef(null);
 
   const startScan = () => {
-    const githubUrl = document.getElementById('target').value;
+    const targetIp = document.getElementById('target').value;
     const output = document.getElementById('output');
 
     // 상태 초기화
@@ -27,13 +27,13 @@ function DirectSshBruteForceAttackPage() {
     }
 
     // 새 WebSocket 연결 생성
-    const ws = new WebSocket('ws://localhost:8000/ws/attacks/indirect/docker/');
+    const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/ssh-brute-force');
     wsRef.current = ws;
 
     ws.onopen = () => {
       // GitHub URL 전송
       ws.send(JSON.stringify({
-        github_url: githubUrl
+        target_ip: targetIp,
       }));
     };
 
@@ -52,13 +52,13 @@ function DirectSshBruteForceAttackPage() {
         setDownloadUrl(data.url);
         setShowDownloadBtn(true);
       } else if (data.type === 'error') {
-        setLogs(prev => prev + '❌ 오류: ' + data.message + '\n');
+        setLogs(prev => prev + '오류: ' + data.message + '\n');
       }
     };
 
     ws.onerror = (error) => {
       console.error('WebSocket 오류:', error);
-      setLogs(prev => prev + '❌ 연결 오류가 발생했습니다.\n');
+      setLogs(prev => prev + '연결 오류가 발생했습니다.\n');
     };
   };
 
@@ -81,12 +81,12 @@ function DirectSshBruteForceAttackPage() {
             <input
               type="text"
               id="target"
-              placeholder="Docker"
+              placeholder="target IP"
             />
           </div>
 
           <div className="button-group">
-            <button className="start-btn" onClick={startScan}>스캔 시작</button>
+            <button className="start-btn" onClick={startScan}>공격 시작</button>
 
             {showDownloadBtn && (
               <button
