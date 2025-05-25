@@ -13,7 +13,8 @@ function DirectDosAttackPage() {
   const wsRef = useRef(null);
 
   const startScan = () => {
-    const githubUrl = document.getElementById('target').value;
+    const targetIP = document.getElementById('target-ip').value;
+    const targetPort = document.getElementById('target-port').value;
     const output = document.getElementById('output');
 
     // 상태 초기화
@@ -27,13 +28,14 @@ function DirectDosAttackPage() {
     }
 
     // 새 WebSocket 연결 생성
-    const ws = new WebSocket('ws://localhost:8000/ws/attacks/indirect/docker/');
+    const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/dos');
     wsRef.current = ws;
 
     ws.onopen = () => {
       // GitHub URL 전송
       ws.send(JSON.stringify({
-        github_url: githubUrl
+        target_ip: targetIP,
+        target_port: targetPort,
       }));
     };
 
@@ -77,13 +79,23 @@ function DirectDosAttackPage() {
 
         <div className="scan-form">
           <div className="form-group">
-            <label htmlFor="target">Dos Attack</label>
+            <label htmlFor="target">Target IP</label>
             <input
               type="text"
-              id="target"
-              placeholder="Docker"
+              id="target-ip"
+              placeholder="Target IP"
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="target">Target Port</label>
+            <input
+              type="text"
+              id="target-port"
+              placeholder="Target Port"
+            />
+          </div>
+
 
           <div className="button-group">
             <button className="start-btn" onClick={startScan}>스캔 시작</button>
