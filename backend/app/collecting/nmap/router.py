@@ -8,26 +8,38 @@ router = APIRouter()
 @router.websocket("/ws/collecting/nmap")
 async def collect_nmap_scan(websocket: WebSocket):
     await websocket.accept()
-    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. nmap 스캔 요청 대기 중..."}))
+    print("[DEBUG] WebSocket connection accepted")
+    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket connected. nmap scan request receiving..."}))
 
     try:
         init_data = await websocket.receive_text()
+        print(f"[DEBUG] Received data from client: {init_data}")
         data = json.loads(init_data)
         target_ip_range = data.get("target_ip_range")
         if not target_ip_range:
-            await websocket.send_text(json.dumps({"type": "error", "message": "target_ip_range 파라미터 필요"}))
+            await websocket.send_text(json.dumps({"type": "error", "message": "target_ip_range parameter needed"}))
+            print("[ERROR] target_ip_range parameter missing")
             await websocket.close()
             return
 
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = f"nmap_scan_{timestamp}.xml"
+        output_file = "nmap_scan.xml"
 
-        await run_nmap_scan(target_ip_range, output_file, websocket)
+        try:
+            await run_nmap_scan(target_ip_range, output_file, websocket)
+        except Exception as e:
+            error_msg = f"nmap scan failed: {str(e)}"
+            print(f"[ERROR] {error_msg}")
+            await websocket.send_text(json.dumps({"type": "error", "message": error_msg}))
+            await websocket.close()
+            return
 
-        await websocket.send_text(json.dumps({"type": "done", "message": f"nmap 스캔 완료, 결과파일: {output_file}"}))
+        await websocket.send_text(json.dumps({"type": "done", "message": f"nmap scan finished, file: {output_file}"}))
         await websocket.send_text(json.dumps({"type": "download_url", "url": f"/download/{output_file}"}))
 
     except Exception as e:
-        await websocket.send_text(json.dumps({"type": "error", "message": str(e)}))
+        error_msg = f"unknown error: {str(e)}"
+        print(f"[ERROR] {error_msg}")
+        await websocket.send_text(json.dumps({"type": "error", "message": error_msg}))
     finally:
+        print("[DEBUG] Closing WebSocket connection")
         await websocket.close()

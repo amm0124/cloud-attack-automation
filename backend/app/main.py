@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi import APIRouter
 from collecting.github.router import router as github_collector_router
+from collecting.nmap.router import router as nmap_collector_router
 from analyzing.iam.router import router as iam_analyzer_router
 from analyzing.ec2.router import router as ec2_analyzer_router
 from analyzing.s3.router import router as s3_analyzer_router
@@ -10,12 +11,14 @@ from attacks.direct.aws_lambda.router import router as aws_lambda_injection_rout
 from attacks.direct.aws_ec2.router import router as aws_ec2_direct_attack_router
 from analyzing.jenkins.router import router as jenkins_analyzer_router
 from attacks.indirect.router import router as indirect_attack_router
+from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi.responses import StreamingResponse
 from fastapi import HTTPException
 import os
 app = FastAPI()
 app.include_router(github_collector_router)
+app.include_router(nmap_collector_router)
 app.include_router(iam_analyzer_router)
 app.include_router(ec2_analyzer_router)
 app.include_router(s3_analyzer_router)
@@ -26,6 +29,13 @@ app.include_router(aws_ec2_direct_attack_router)
 app.include_router(jenkins_analyzer_router)
 app.include_router(indirect_attack_router)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 개발용으로 모든 origin 허용 (보안상 배포 시에는 도메인 지정 필요)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # REPORTS_DIR = "/Users/geonho/workspace/cloud-attack-automation/backend/app" # 보고서 저장 경로
 REPORTS_DIR = "/Users/user/cloud-attack-automation/cloud-attack-automation/backend/app"
