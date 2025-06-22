@@ -43,7 +43,3 @@ async def collect_github_credentials(websocket: WebSocket):
         await websocket.send_text(json.dumps({"type": "error", "message": str(e)}))
 
     await websocket.close()
-
-
-
-

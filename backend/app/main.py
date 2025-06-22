@@ -8,7 +8,8 @@ from analyzing.aws_lambda.router import router as lambda_analyzer_router
 from attacks.direct.router import router as ssh_brute_force_direct_attack_router
 from attacks.direct.aws_lambda.router import router as aws_lambda_injection_routers
 from attacks.direct.aws_ec2.router import router as aws_ec2_direct_attack_router
-
+from analyzing.jenkins.router import router as jenkins_analyzer_router
+from attacks.indirect.router import router as indirect_attack_router
 
 from fastapi.responses import StreamingResponse
 from fastapi import HTTPException
@@ -22,9 +23,12 @@ app.include_router(lambda_analyzer_router)
 app.include_router(ssh_brute_force_direct_attack_router)
 app.include_router(aws_lambda_injection_routers)
 app.include_router(aws_ec2_direct_attack_router)
+app.include_router(jenkins_analyzer_router)
+app.include_router(indirect_attack_router)
 
 
-REPORTS_DIR = "/Users/geonho/workspace/cloud-attack-automation/backend/app" # 보고서 저장 경로
+# REPORTS_DIR = "/Users/geonho/workspace/cloud-attack-automation/backend/app" # 보고서 저장 경로
+REPORTS_DIR = "/Users/user/cloud-attack-automation/cloud-attack-automation/backend/app"
 
 router = APIRouter()
 
