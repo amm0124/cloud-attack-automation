@@ -27,6 +27,9 @@ import PolicyAttackIndexPage from "./pages/attacks/policy";
 import PolicyMitmAttackPage from "./pages/attacks/policy/mitm/PolicyMitmAttackPage";
 
 import './App.css';
+import NmapCollectPage from "./pages/collecting/nmap/NmapCollectPage";
+import JenkinsAnalyzingPage from "./pages/analyzing/jenkins/JenkinsAnalyzePage";
+import IndirectJenkinsAttackPage from "./pages/attacks/indirect/jenkins/IndirectJenkinsAttackPage";
 
 
 function App() {
@@ -36,11 +39,13 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/collecting" element={<CollectingIndexPage />} />
         <Route path="/collecting/github" element={<GitHubCollectPage />} />
+        <Route path="/collecting/nmap" element={<NmapCollectPage />} />
         <Route path="/analyzing" element={<AnalyzingIndexPage />} />
         <Route path="/analyzing/aws/iam" element={<IamAnalyzingPage />} />
         <Route path="/analyzing/aws/ec2" element={<Ec2AnalyzingPage />} />
         <Route path="/analyzing/aws/s3" element={<S3AnalyzingPage />} />
         <Route path="/analyzing/aws/lambda" element={<LambdaAnalyzingPage />} />
+        <Route path="/analyzing/jenkins" element={<JenkinsAnalyzingPage />} />
 
         <Route path="/attacks" element={<AttackIndexPage />} />
 
@@ -53,6 +58,7 @@ function App() {
 
         <Route path="/attacks/indirect" element={<IndirectAttackIndexPage />} />
         <Route path="/attacks/indirect/docker" element={<IndirectDockerAttackPage />} />
+        <Route path="/attacks/indirect/jenkins" element={<IndirectJenkinsAttackPage />} />
 
         <Route path="/attacks/policy" element={<PolicyAttackIndexPage />} />
         <Route path="/attacks/policy/mitm" element={<PolicyMitmAttackPage />} />

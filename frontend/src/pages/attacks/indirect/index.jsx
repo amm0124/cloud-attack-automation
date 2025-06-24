@@ -22,7 +22,7 @@ function IndirectAttackIndexPage() {
               <li>dd</li>
               <li>dd</li>
             </ul>
-            <Link to="/attacks/indirect/docker" className="option-button">이동하기</Link>
+            <Link to="/attacks/indirect/jenkins" className="option-button">이동하기</Link>
           </div>
 
 

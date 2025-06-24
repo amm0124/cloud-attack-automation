@@ -25,10 +25,11 @@ function HomePage() {
 
       <div className="main-options">
         <div className="option-card">
-          <h3>1. 자격 증명 정보 수집</h3>
+          <h3>자격 증명 정보 수집</h3>
           <p>공개 저장소에 노출된 자격 증명 정보를 수집할 수 있습니다.</p>
           <ul>
             <li>GitHub</li>
+            <li>Nmap</li>
           </ul>
           <button onClick={handleScanningClick}>자격 증명 정보 수집 시작</button>
         </div>
@@ -41,6 +42,7 @@ function HomePage() {
             <li>EC2</li>
             <li>S3</li>
             <li>Lambda</li>
+            <li>Jenkins</li>
           </ul>
           <button onClick={handleAnalyzingClick}>취약점 분석 시작</button>
         </div>

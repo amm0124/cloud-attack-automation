@@ -28,7 +28,7 @@ function LambdaAnalyzingPage() {
     }
 
     // 새 WebSocket 연결 생성
-    const ws = new WebSocket('ws://localhost:8000/ws/analyzing/aws/lambda');
+    const ws = new WebSocket('ws://localhost:8000/ws/analyzing/jenkins');
     wsRef.current = ws;
 
     ws.onopen = () => {

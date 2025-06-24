@@ -24,11 +24,21 @@ function GithubCollectPage() {
             <Link to="/collecting/github" className="option-button">시작하기</Link>
           </div>
 
-
+          <div className="option-card">
+            <h3>Nmap 스캔</h3>
+            <p>Nmap 스캔을 통해 특정 IP 주소에 대한 정보를 수집합니다.</p>
+            <ul>
+              <li>AWS Region 검출</li>
+              <li>호스트 상태 검출</li>
+              <li>포트 상태 및 통신하는 서비스 정보 검출</li>
+            </ul>
+            <Link to="/collecting/nmap" className="option-button">시작하기</Link>
+          </div>
         </div>
       </div>
-    </Layout>
-  );
+  </Layout>
+)
+  ;
 }
 
 export default GithubCollectPage;

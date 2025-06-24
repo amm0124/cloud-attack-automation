@@ -38,7 +38,7 @@ app.add_middleware(
 )
 
 # REPORTS_DIR = "/Users/geonho/workspace/cloud-attack-automation/backend/app" # 보고서 저장 경로
-REPORTS_DIR = "/Users/user/cloud-attack-automation/cloud-attack-automation/backend/app"
+REPORTS_DIR = "/Users/user/cloud-attack-automation/cloud-attack-automation/backend/"
 
 router = APIRouter()
 

@@ -5,7 +5,7 @@ from app.attacks.indirect.jenkins_attack import launch_exploit
 
 router = APIRouter()
 
-@router.websocket("/ws/attack/jenkins")
+@router.websocket("/ws/attack/indirect/jenkins")
 async def attack_jenkins(websocket: WebSocket):
     await websocket.accept()
     await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket connected. attack request ready..."}))
@@ -24,20 +24,10 @@ async def attack_jenkins(websocket: WebSocket):
 
         await websocket.send_text(json.dumps({"type": "log", "message": f"attack start: {jenkins_url}, file path: {file_path}"}))
 
-        loop = asyncio.get_running_loop()
-        # 동기 함수 launch_exploit을 별도 쓰레드에서 실행
-        result = await loop.run_in_executor(None, launch_exploit, jenkins_url, file_path)
+        report_file = await launch_exploit(jenkins_url, file_path, websocket)
 
-        # result를 문자열로 변환 (bytes면 디코딩 시도)
-        if isinstance(result, bytes):
-            try:
-                result_str = result.decode("utf-8", errors="replace")
-            except Exception:
-                result_str = str(result)
-        else:
-            result_str = str(result)
-
-        await websocket.send_text(json.dumps({"type": "result", "message": result_str}))
+        # 필요시 report_file을 클라이언트에 알려줌
+        # (이미 launch_exploit 내부에서 download_url 전송함)
 
     except Exception as e:
         await websocket.send_text(json.dumps({"type": "error", "message": f"error in attack: {str(e)}"}))

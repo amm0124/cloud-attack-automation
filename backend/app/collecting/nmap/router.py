@@ -22,7 +22,7 @@ async def collect_nmap_scan(websocket: WebSocket):
             await websocket.close()
             return
 
-        output_file = "nmap_scan.xml"
+        output_file = "nmap_scan.md"
 
         try:
             await run_nmap_scan(target_ip_range, output_file, websocket)
