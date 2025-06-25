@@ -49,13 +49,13 @@ function GitHubCollectPage() {
         setDownloadUrl(data.url);
         setShowDownloadBtn(true);
       } else if (data.type === 'error') {
-        setLogs(prev => prev + '❌ 오류: ' + data.message + '\n');
+        setLogs(prev => prev + '오류: ' + data.message + '\n');
       }
     };
 
     ws.onerror = (error) => {
       console.error('WebSocket 오류:', error);
-      setLogs(prev => prev + '❌ 연결 오류가 발생했습니다.\n');
+      setLogs(prev => prev + '연결 오류가 발생했습니다.\n');
     };
   };
 
@@ -70,7 +70,7 @@ function GitHubCollectPage() {
     <Layout>
       <div className="scanning-page">
         <h2>공개 저장소 스캐닝을 통한 자격 증명 수집</h2>
-        <p className="page-description">GitHub와 같은 공개 저장소에 노출된 자격 증명 수집후 보고서 형태로 도출합니다</p>
+        <p className="page-description">GitHub와 같은 공개 저장소에 노출된 자격 증명 수집후 보고서 형태로 도출합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -78,7 +78,7 @@ function GitHubCollectPage() {
             <input
               type="text"
               id="target"
-              placeholder="ex: https://github.com/amm0124/spring-gift-jpa.git"
+              placeholder="ex: https://github.com/xxxx/vulner-repo.git"
             />
           </div>
 

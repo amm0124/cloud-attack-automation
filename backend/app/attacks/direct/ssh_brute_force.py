@@ -19,9 +19,6 @@ def load_wordlist(file_path):
 
 
 def run_hydra_attack(target, users_file, passwords_file, threads=10):
-    """Hydra를 사용한 SSH 브루트포스 공격"""
-    print(f"[+] Starting attack on {target}")
-
     start_time = datetime.now()
 
     cmd = [

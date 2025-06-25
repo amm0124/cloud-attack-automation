@@ -7,10 +7,9 @@ from datetime import datetime
 
 
 def check_and_open_port(access_key, secret_key, region, instance_id, port=2375):
-    """Check and open port 2375 in security groups"""
     ec2 = boto3.client('ec2', aws_access_key_id=access_key, aws_secret_access_key=secret_key, region_name=region)
 
-    # Get instance security groups
+    # 보안 그룹 조회
     response = ec2.describe_instances(InstanceIds=[instance_id])
     instance = response['Reservations'][0]['Instances'][0]
     security_groups = instance['SecurityGroups']
@@ -19,14 +18,14 @@ def check_and_open_port(access_key, secret_key, region, instance_id, port=2375):
     for sg in security_groups:
         sg_id = sg['GroupId']
 
-        # Check if port is already open
+        # 2375번 포트 조회
         sg_detail = ec2.describe_security_groups(GroupIds=[sg_id])['SecurityGroups'][0]
         for rule in sg_detail['IpPermissions']:
             if rule.get('FromPort') == port and rule.get('ToPort') == port:
                 port_open = True
                 break
 
-        # Open port if not already open
+        # 닫혀있으면 포트 열기
         if not port_open:
             try:
                 ec2.authorize_security_group_ingress(

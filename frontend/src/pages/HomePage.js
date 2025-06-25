@@ -25,7 +25,7 @@ function HomePage() {
 
       <div className="main-options">
         <div className="option-card">
-          <h3>1. 자격 증명 정보 수집</h3>
+          <h3>자격 증명 정보 수집</h3>
           <p>공개 저장소에 노출된 자격 증명 정보를 수집할 수 있습니다.</p>
           <ul>
             <li>GitHub</li>
@@ -51,7 +51,7 @@ function HomePage() {
           <ul>
             <li>클라우드 인프라스트럭처 대상 공격</li>
             <li>취약한 애플리케이션을 통한 인프라스트럭처 공격</li>
-            <li>보안 정책 우회를 통한 공격</li>
+            {/*<li>보안 정책 우회를 통한 공격</li>*/}
           </ul>
           <button onClick={handleAttackClick}>공격 시뮬레이션 시작</button>
         </div>

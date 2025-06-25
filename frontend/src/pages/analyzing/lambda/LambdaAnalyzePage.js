@@ -76,7 +76,7 @@ function LambdaAnalyzingPage() {
     <Layout>
       <div className="scanning-page">
         <h2>Lambda 분석</h2>
-        <p className="page-description">Lambda 분석</p>
+        <p className="page-description">Lambda 함수의 실행 및 연결 권한을 분석하여 보안 설정을 진단합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -84,7 +84,7 @@ function LambdaAnalyzingPage() {
             <input
               type="text"
               id="access-key"
-              placeholder="AKIAxxxxxxxxxxxxxxxxxx"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
@@ -93,7 +93,7 @@ function LambdaAnalyzingPage() {
             <input
               type="text"
               id="secret-key"
-              placeholder="dasdasdasdasdadsadasdasdasdasdasd"
+              placeholder="수집한 Secret Key 입력"
             />
           </div>
 

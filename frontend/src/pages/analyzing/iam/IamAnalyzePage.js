@@ -55,13 +55,13 @@ function IamAnalyzingPage() {
         setDownloadUrl(data.url);
         setShowDownloadBtn(true);
       } else if (data.type === 'error') {
-        setLogs(prev => prev + '❌ 오류: ' + data.message + '\n');
+        setLogs(prev => prev + '오류: ' + data.message + '\n');
       }
     };
 
     ws.onerror = (error) => {
       console.error('WebSocket 오류:', error);
-      setLogs(prev => prev + '❌ 연결 오류가 발생했습니다.\n');
+      setLogs(prev => prev + '연결 오류가 발생했습니다.\n');
     };
   };
 
@@ -76,7 +76,7 @@ function IamAnalyzingPage() {
     <Layout>
       <div className="scanning-page">
         <h2>IAM 분석</h2>
-        <p className="page-description">IAM 분석</p>
+        <p className="page-description">IAM 권한을 분석합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -84,7 +84,7 @@ function IamAnalyzingPage() {
             <input
               type="text"
               id="access-key"
-              placeholder="AKIAxxxxxxxxxxxxxxxxxx"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
@@ -93,7 +93,7 @@ function IamAnalyzingPage() {
             <input
               type="text"
               id="secret-key"
-              placeholder="dasdasdasdasdadsadasdasdasdasdasd"
+              placeholder="수집한 Secret Key 입력"
             />
           </div>
 

@@ -8,70 +8,96 @@ function DirectAttackIndexPage() {
   return (
     <Layout>
       <div className="scanning-menu-page">
-        <h2>Direct index page</h2>
-        <p className="page-description">Direct Attack</p>
+        <h2>클라우드 플랫폼 서비스 직접 공격</h2>
+        <p className="page-description">클라우드 플랫폼 서비스 대상 공격을 시뮬레이션합니다.</p>
 
         <div className="scanning-options">
 
           <div className="option-card">
-            <h3>ssh brute force</h3>
-            <p>ssh brute force</p>
+            <h3>[EC2] - SSH brute force</h3>
+            <p>공격 대상 : EC2</p>
             <ul>
-              <li>SSH brute force</li>
-              <li>dd</li>
-              <li>dd</li>
-              <li>dd</li>
+              <li>EC2를 대상으로 SSH Brute force 공격 수행</li>
             </ul>
             <Link to="/attacks/direct/ssh-brute-force" className="option-button">이동하기</Link>
           </div>
 
            <div className="option-card">
-            <h3>ssh race condition</h3>
-            <p>ssh race condition cve 2024-6387</p>
+            <h3>[EC2] - SSH Race Condition 공격</h3>
+            <p>공격 대상 : EC2</p>
             <ul>
-              <li>Docker</li>
-              <li>Jenkins</li>
-              <li>dd</li>
-              <li>ㅇㅇ</li>
+               <li>EC2를 대상으로 CVE 2024-6387 공격 수행</li>
+                <li>취약 OpenSSH 버전 : 8.5p1이상 9.8p1미만</li>
             </ul>
             <Link to="/attacks/direct/ssh-race-condition" className="option-button">이동하기</Link>
           </div>
 
            <div className="option-card">
-            <h3>EC2 임시 키 발급</h3>
-            <p>EC2 임시 키 발급</p>
+            <h3>[EC2] - EC2 임시 키 발급</h3>
+            <p>공격 대상 : EC2</p>
             <ul>
-              <li>EC2 임시 키 발급</li>
-              <li>ㅇㅇ</li>
-              <li>ㅇㅇ</li>
-              <li>ㅇㅇ</li>
+              <li>새로운 EC2 키 발급을 통한 지속적 공격 확보</li>
             </ul>
                 <Link to="/attacks/direct/temporary-key" className="option-button">이동하기</Link>
           </div>
 
             <div className="option-card">
-            <h3>EC2 DOS </h3>
-            <p>EC2 DOS </p>
+            <h3>[EC2] - EC2 DoS</h3>
+            <p>공격 대상 : EC2</p>
             <ul>
-              <li>Docker</li>
-              <li>Jenkins</li>
-              <li>dd</li>
-              <li>ㅇㅇ</li>
+              <li>EC2를 대상으로 DoS(Denial of Service) 공격 수행</li>
             </ul>
             <Link to="/attacks/direct/dos" className="option-button">이동하기</Link>
           </div>
 
             <div className="option-card">
-            <h3>LAMBDA 악성 코드 삽입</h3>
-            <p>LAMBDA 악성 코드 삽입</p>
+                <h3>[EC2] - EC2 중지</h3>
+                <p>공격 대상 : EC2</p>
+                <ul>
+                    <li>EC2 서비스 완전 중지</li>
+                </ul>
+                <Link to="/attacks/direct/dos" className="option-button">이동하기</Link>
+            </div>
+
+            <div className="option-card">
+                <h3>[EC2] - EC2 삭제</h3>
+                <p>공격 대상 : EC2</p>
+                <ul>
+                    <li>EC2 서비스 완전 삭제</li>
+                </ul>
+                <Link to="/attacks/direct/dos" className="option-button">이동하기</Link>
+            </div>
+
+            <div className="option-card">
+                <h3>[Lambda] - Lambda 코드 다운로드</h3>
+                <p>공격 대상 : Lambda</p>
+                <ul>
+                    <li>AWS Lambda에 올라온 코드를 다운로드</li>
+                </ul>
+                <Link to="/attacks/direct/lambda-injection" className="option-button">이동하기</Link>
+            </div>
+
+
+            <div className="option-card">
+            <h3>[Lambda] - Lambda 악성 코드 삽입</h3>
+            <p>공격 대상 : Lambda</p>
             <ul>
-              <li>Docker</li>
-              <li>Jenkins</li>
-              <li>dd</li>
-              <li>ㅇㅇ</li>
+              <li>AWS Lambda 대상으로 악성 코드 삽입</li>
             </ul>
             <Link to="/attacks/direct/lambda-injection" className="option-button">이동하기</Link>
           </div>
+
+            <div className="option-card">
+                <h3>[Lambda] - Lambda 삭제</h3>
+                <p>공격 대상 : Lambda</p>
+                <ul>
+                    <li>AWS Lambda 대상 삭제</li>
+                </ul>
+                <Link to="/attacks/direct/lambda-injection" className="option-button">이동하기</Link>
+            </div>
+
+
+
 
 
         </div>

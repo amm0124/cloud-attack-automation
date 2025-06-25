@@ -4,7 +4,7 @@ function Footer() {
 
     return (
         <footer className="footer">
-            <p>© 2025 클라우드 레드팀 플랫폼</p>
+            <p>부산대학교 2024 후기 졸업과제</p>
         </footer>
     );
 }

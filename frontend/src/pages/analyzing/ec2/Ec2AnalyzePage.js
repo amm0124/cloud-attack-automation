@@ -75,8 +75,8 @@ function Ec2AnalyzingPage() {
   return (
     <Layout>
       <div className="scanning-page">
-        <h2>Ec2 분석</h2>
-        <p className="page-description">Ec2 분석. 인바운드, 아웃바운드 등을 포함</p>
+        <h2>EC2 분석</h2>
+        <p className="page-description">인바운드, 아웃바운드 규칙 등을 포함하여 EC2 관련 현재 자격 증명을 분석합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -84,7 +84,7 @@ function Ec2AnalyzingPage() {
             <input
               type="text"
               id="access-key"
-              placeholder="AKIAxxxxxxxxxxxxxxxxxx"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
@@ -93,7 +93,7 @@ function Ec2AnalyzingPage() {
             <input
               type="text"
               id="secret-key"
-              placeholder="dasdasdasdasdadsadasdasdasdasdasd"
+              placeholder="수집한 Secret Key 입력"
             />
           </div>
 

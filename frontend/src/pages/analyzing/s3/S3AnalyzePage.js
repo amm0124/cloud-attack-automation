@@ -76,7 +76,7 @@ function S3AnalyzingPage() {
     <Layout>
       <div className="scanning-page">
         <h2>S3 분석</h2>
-        <p className="page-description">S3 분석</p>
+        <p className="page-description">AWS S3 버킷의 접근 권한을 분석하여 잠재적인 데이터 노출 위험을 점검합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -84,7 +84,7 @@ function S3AnalyzingPage() {
             <input
               type="text"
               id="access-key"
-              placeholder="AKIAxxxxxxxxxxxxxxxxxx"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
@@ -93,7 +93,7 @@ function S3AnalyzingPage() {
             <input
               type="text"
               id="secret-key"
-              placeholder="dasdasdasdasdadsadasdasdasdasdasd"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
