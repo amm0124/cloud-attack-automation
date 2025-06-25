@@ -33,8 +33,7 @@ function IndirectJenkinsAttackPage() {
         ws.onopen = () => {
             // GitHub URL 전송
             ws.send(JSON.stringify({
-                jenkins_url: ipAddress + ":8080",
-                file_path: "/etc/passwd"
+                jenkins_url: ipAddress + ":8080"
             }));
         };
 

