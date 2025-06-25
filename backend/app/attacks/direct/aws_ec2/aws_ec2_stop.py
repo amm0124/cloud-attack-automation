@@ -66,7 +66,9 @@ def main():
        args.instance_id
    )
 
-   print(result)
+   with open("ec2_stop_result.md", "w", encoding="utf-8") as f:
+       f.write(result)
+
 
 if __name__ == "__main__":
    main()
