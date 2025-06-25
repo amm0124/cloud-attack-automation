@@ -78,8 +78,8 @@ function IndirectDockerAttackPage() {
   return (
     <Layout>
       <div className="scanning-page">
-        <h2>Docker API Attack</h2>
-        <p className="page-description">Docker Attack</p>
+        <h2>Docker Container Escape Attack</h2>
+        <p className="page-description">컨테이너 관리 서비스 Docker Deamon을 악용하여 호스트 시스템으로 침투합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -87,7 +87,7 @@ function IndirectDockerAttackPage() {
             <input
               type="text"
               id="access-key"
-              placeholder="access key"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
@@ -96,7 +96,7 @@ function IndirectDockerAttackPage() {
             <input
               type="text"
               id="secret-key"
-              placeholder="secret key"
+              placeholder="수집한 Secret Key 입력"
             />
           </div>
 
@@ -121,7 +121,7 @@ function IndirectDockerAttackPage() {
 
 
           <div className="button-group">
-            <button className="start-btn" onClick={startScan}>스캔 시작</button>
+            <button className="start-btn" onClick={startScan}>공격 시작</button>
 
             {showDownloadBtn && (
               <button

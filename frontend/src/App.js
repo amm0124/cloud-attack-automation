@@ -12,6 +12,8 @@ import LambdaAnalyzingPage from "./pages/analyzing/lambda/LambdaAnalyzePage";
 
 import AttackIndexPage from "./pages/attacks";
 
+
+// legacy import
 import DirectAttackIndexPage from "./pages/attacks/direct";
 import DirectSshBruteForceAttackPage from "./pages/attacks/direct/ssh/DirectSshBruteForceAttackPage";
 import DirectSshRaceConditionAttackPage from "./pages/attacks/direct/ssh/DirectSshRaceConditionAttackPage";
@@ -19,12 +21,16 @@ import DirectTemporaryKeyAttackPage from "./pages/attacks/direct/persistence/Dir
 import DirectDosAttackPage from "./pages/attacks/direct/dos/DirectDosAttackPage";
 import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/DirectLambdaInjectionAttackPage";
 
+// new
+
+
+
 
 import IndirectAttackIndexPage from "./pages/attacks/indirect";
 import IndirectDockerAttackPage from "./pages/attacks/indirect/docker/IndirectDockerAttackPage";
 
-import PolicyAttackIndexPage from "./pages/attacks/policy";
-import PolicyMitmAttackPage from "./pages/attacks/policy/mitm/PolicyMitmAttackPage";
+//import PolicyAttackIndexPage from "./pages/attacks/policy";
+//import PolicyMitmAttackPage from "./pages/attacks/policy/mitm/PolicyMitmAttackPage";
 
 import './App.css';
 
@@ -54,8 +60,8 @@ function App() {
         <Route path="/attacks/indirect" element={<IndirectAttackIndexPage />} />
         <Route path="/attacks/indirect/docker" element={<IndirectDockerAttackPage />} />
 
-        <Route path="/attacks/policy" element={<PolicyAttackIndexPage />} />
-        <Route path="/attacks/policy/mitm" element={<PolicyMitmAttackPage />} />
+        {/*<Route path="/attacks/policy" element={<PolicyAttackIndexPage />} />*/}
+        {/*<Route path="/attacks/policy/mitm" element={<PolicyMitmAttackPage />} />*/}
 
 
 
