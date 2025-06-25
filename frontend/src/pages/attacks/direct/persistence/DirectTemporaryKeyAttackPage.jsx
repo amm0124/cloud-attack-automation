@@ -17,6 +17,7 @@ function DirectTemporaryKeyAttackPage() {
     const secretKey = document.getElementById('secret-key').value;
     const region = document.getElementById('region').value;
     const instanceId = document.getElementById('instance-id').value;
+    const keyPairName = document.getElementById('key-pair-name').value;
 
 
     const output = document.getElementById('output');
@@ -60,13 +61,13 @@ function DirectTemporaryKeyAttackPage() {
         setDownloadUrl(data.url);
         setShowDownloadBtn(true);
       } else if (data.type === 'error') {
-        setLogs(prev => prev + '❌ 오류: ' + data.message + '\n');
+        setLogs(prev => prev + '오류: ' + data.message + '\n');
       }
     };
 
     ws.onerror = (error) => {
       console.error('WebSocket 오류:', error);
-      setLogs(prev => prev + '❌ 연결 오류가 발생했습니다.\n');
+      setLogs(prev => prev + '연결 오류가 발생했습니다.\n');
     };
   };
 
@@ -80,8 +81,8 @@ function DirectTemporaryKeyAttackPage() {
   return (
     <Layout>
       <div className="scanning-page">
-        <h2>DirectTemporaryKeyAttackPage</h2>
-        <p className="page-description">DirectTemporaryKeyAttackPage</p>
+        <h2>EC2 임시 키 발급</h2>
+        <p className="page-description">새로운 EC2 키 발급을 통한 지속적 공격 확보</p>
 
         <div className="scan-form">
           <div className="form-group">
@@ -89,7 +90,7 @@ function DirectTemporaryKeyAttackPage() {
             <input
               type="text"
               id="access-key"
-              placeholder="access key"
+              placeholder="수집한 Access Key 입력"
             />
           </div>
 
@@ -98,7 +99,7 @@ function DirectTemporaryKeyAttackPage() {
             <input
               type="text"
               id="secret-key"
-              placeholder="secret key"
+              placeholder="수집한 Secret Key 입력"
             />
           </div>
 
@@ -107,7 +108,7 @@ function DirectTemporaryKeyAttackPage() {
             <input
               type="text"
               id="region"
-              placeholder="ap-northeast-2"
+              placeholder="수집한 EC2 region 입력"
             />
           </div>
 
@@ -116,13 +117,22 @@ function DirectTemporaryKeyAttackPage() {
             <input
               type="text"
               id="instance-id"
-              placeholder="instance id"
+              placeholder="수집한 EC2 instance id 입력"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="target">key pair name</label>
+            <input
+                type="text"
+                id="instance-id"
+                placeholder="생성하고자 하는 key pair 이름 입력"
             />
           </div>
 
 
           <div className="button-group">
-            <button className="start-btn" onClick={startScan}>스캔 시작</button>
+            <button className="start-btn" onClick={startScan}>키 발급 시작</button>
 
             {showDownloadBtn && (
               <button
