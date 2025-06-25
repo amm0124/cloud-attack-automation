@@ -102,16 +102,18 @@ async def ssh_temp_key_attack(websocket: WebSocket):
         ec2_instance_id = data.get("instance_id")
         keypair_name = data.get("keypair_name")
 
+
+
+
         script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_temp_key.py")
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        output_file = f"aws_ec2_ssh_temp_key_{timestamp}.md"
+        output_file = f"{keypair_name}.pem"
 
         process = await asyncio.create_subprocess_exec(
             "python", script_path,
-            "--access_key", access_key,
-            "--secret_key", secret_key,
+            "--access-key", access_key,
+            "--secret-key", secret_key,
             "--region", region,
-            "--instance_id", ec2_instance_id,
+            "--instance-id", ec2_instance_id,
             "--keypair-name", keypair_name,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,

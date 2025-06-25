@@ -33,7 +33,7 @@ function DirectTemporaryKeyAttackPage() {
     }
 
     // 새 WebSocket 연결 생성
-    const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/temporary-key');
+    const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/ssh-temp-key');
     wsRef.current = ws;
 
     ws.onopen = () => {
@@ -43,6 +43,7 @@ function DirectTemporaryKeyAttackPage() {
         secret_key: secretKey,
         region: region,
         instance_id: instanceId,
+        keypair_name: keyPairName,
       }));
     };
 
@@ -125,7 +126,7 @@ function DirectTemporaryKeyAttackPage() {
             <label htmlFor="target">key pair name</label>
             <input
                 type="text"
-                id="instance-id"
+                id="key-pair-name"
                 placeholder="생성하고자 하는 key pair 이름 입력"
             />
           </div>
@@ -139,7 +140,7 @@ function DirectTemporaryKeyAttackPage() {
                 className="download-btn"
                 onClick={downloadReport}
               >
-                📄 보고서 다운로드
+                📄 키 다운로드
               </button>
             )}
           </div>
