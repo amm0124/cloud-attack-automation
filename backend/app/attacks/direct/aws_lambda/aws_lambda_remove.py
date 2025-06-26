@@ -53,7 +53,7 @@ def main():
     parser.add_argument('--secret-key', required=True, help='AWS Secret Key')
     parser.add_argument('--region', required=True, help='AWS Region')
     parser.add_argument('--function-name', required=True, help='Lambda Function Name')
-
+    parser.add_argument('--output-file', default='markdown', help='Output format (default: markdown)')
     args = parser.parse_args()
 
     result = delete_lambda_function(
@@ -62,8 +62,10 @@ def main():
         args.region,
         args.function_name
     )
+    with open(args.output_file, "w", encoding="utf-8") as f:
+        f.write(result)
 
-    print(result)
+    print("lambda 삭제 완료.")
 
 if __name__ == "__main__":
     main()

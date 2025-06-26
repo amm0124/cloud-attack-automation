@@ -25,8 +25,8 @@ def add_ssh_key(aws_access_key, aws_secret_key, aws_region, ec2_instance_id, new
         # 로컬에 저장
         with open(pem_path, 'w') as f:
             f.write(private_key)
-    # with open(f'{new_keypair_name}.pem', 'w') as f:
-        #     f.write(private_key)
+
+
 
         print(f"   ✅ 키 생성됨: {new_keypair_name}")
 
