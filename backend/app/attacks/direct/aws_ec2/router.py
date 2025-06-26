@@ -101,10 +101,6 @@ async def ssh_temp_key_attack(websocket: WebSocket):
         region = data.get("region")
         ec2_instance_id = data.get("instance_id")
         keypair_name = data.get("keypair_name")
-
-
-
-
         script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_temp_key.py")
         output_file = f"{keypair_name}.pem"
 
@@ -147,7 +143,11 @@ async def ec2_stop_attack(websocket: WebSocket):
         secret_key = data.get("secret_key")
         region = data.get("region")
         ec2_instance_id = data.get("instance_id")
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
 
+        output_dir = os.path.join(os.getcwd(), "report")
+        output_file_name = f"ec2_stop_{timestamp}.md"
+        output_file = os.path.join(output_dir, output_file_name)
         script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_stop.py")
 
         process = await asyncio.create_subprocess_exec(
@@ -156,6 +156,7 @@ async def ec2_stop_attack(websocket: WebSocket):
             "--secret-key", secret_key,
             "--region", region,
             "--instance-id", ec2_instance_id,
+            "--output-file", output_file,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,
         )
@@ -167,6 +168,9 @@ async def ec2_stop_attack(websocket: WebSocket):
             await websocket.send_text(json.dumps({"type": "log", "message": line.decode().strip()}))
 
         await process.wait()
+        url = f"/download/{output_file_name}"
+        await websocket.send_text(json.dumps({"type": "download_url", "url": url}))
+
 
     except Exception as e:
         await websocket.send_text(json.dumps({"type": "error", "message": str(e)}))

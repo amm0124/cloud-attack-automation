@@ -4,6 +4,11 @@
 import boto3
 import argparse
 import sys
+import os
+import datetime
+
+from aiofiles.os import getcwd
+
 
 def stop_ec2_instance(access_key, secret_key, region, instance_id):
    """EC2 인스턴스를 중지하고 결과를 반환"""
@@ -56,7 +61,8 @@ def main():
    parser.add_argument('--secret-key', required=True, help='AWS Secret Key')
    parser.add_argument('--region', required=True, help='AWS Region')
    parser.add_argument('--instance-id', required=True, help='EC2 Instance ID')
-
+   parser.add_argument('--output-file', required=True, help='Key Pair Name')  # 현재 경로 출력
+    # 현재 경로 출력
    args = parser.parse_args()
 
    result = stop_ec2_instance(
@@ -66,9 +72,13 @@ def main():
        args.instance_id
    )
 
-   with open("ec2_stop_result.md", "w", encoding="utf-8") as f:
+
+
+
+   with open(args.output_file, "w", encoding="utf-8") as f:
        f.write(result)
 
+   print("공격 수행 완료.")
 
 if __name__ == "__main__":
    main()

@@ -32,7 +32,6 @@ router = APIRouter()
 async def download_report(filename: str):
     safe_filename = os.path.basename(filename)
     file_path = os.path.join(REPORTS_DIR, safe_filename)
-    print("file_path", file_path)
 
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="파일이 존재하지 않습니다.")
