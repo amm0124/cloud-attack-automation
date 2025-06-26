@@ -11,7 +11,7 @@ router = APIRouter()
 @router.websocket("/ws/attacks/direct/ssh-brute-force")
 async def ssh_brute_force_attack(websocket: WebSocket):
     await websocket.accept()
-    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. 분석 요청을 기다립니다..."}))
+    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. 공격 시작..."}))
 
     try:
         init_data = await websocket.receive_text()
@@ -135,8 +135,43 @@ async def ssh_temp_key_attack(websocket: WebSocket):
     await websocket.close()
 
 
+@router.websocket("/ws/attacks/direct/ec2-stop")
+async def ec2_stop_attack(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. 공격 시작..."}))
 
+    try:
+        init_data = await websocket.receive_text()
+        data = json.loads(init_data)
+        access_key = data.get("access_key")
+        secret_key = data.get("secret_key")
+        region = data.get("region")
+        ec2_instance_id = data.get("instance_id")
 
+        script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_stop.py")
+
+        process = await asyncio.create_subprocess_exec(
+            "python", script_path,
+            "--access-key", access_key,
+            "--secret-key", secret_key,
+            "--region", region,
+            "--instance-id", ec2_instance_id,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.STDOUT,
+        )
+
+        while True:
+            line = await process.stdout.readline()
+            if not line:
+                break
+            await websocket.send_text(json.dumps({"type": "log", "message": line.decode().strip()}))
+
+        await process.wait()
+
+    except Exception as e:
+        await websocket.send_text(json.dumps({"type": "error", "message": str(e)}))
+
+    await websocket.close()
 
 # @router.websocket("/ws/attacks/direct/dos")
 # async def aws_lambda_malicious_code_injection(websocket: WebSocket):
