@@ -72,12 +72,12 @@ function DirectSshBruteForceAttackPage() {
   return (
     <Layout>
       <div className="scanning-page">
-        <h2>SSH Bruteforce attack</h2>
-        <p className="page-description">SSH Bruteforce attack</p>
+        <h2>SSH brute force</h2>
+        <p className="page-description">EC2를 대상으로 SSH Brute force 공격 수행</p>
 
         <div className="scan-form">
           <div className="form-group">
-            <label htmlFor="target">SSH Bruteforce attack</label>
+            <label htmlFor="target">Target IP</label>
             <input
               type="text"
               id="target"
