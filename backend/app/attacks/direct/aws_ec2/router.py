@@ -131,6 +131,7 @@ async def ssh_temp_key_attack(websocket: WebSocket):
     await websocket.close()
 
 
+# ec2 stop attack
 @router.websocket("/ws/attacks/direct/ec2-stop")
 async def ec2_stop_attack(websocket: WebSocket):
     await websocket.accept()
@@ -149,6 +150,53 @@ async def ec2_stop_attack(websocket: WebSocket):
         output_file_name = f"ec2_stop_{timestamp}.md"
         output_file = os.path.join(output_dir, output_file_name)
         script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_stop.py")
+
+        process = await asyncio.create_subprocess_exec(
+            "python", script_path,
+            "--access-key", access_key,
+            "--secret-key", secret_key,
+            "--region", region,
+            "--instance-id", ec2_instance_id,
+            "--output-file", output_file,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.STDOUT,
+        )
+
+        while True:
+            line = await process.stdout.readline()
+            if not line:
+                break
+            await websocket.send_text(json.dumps({"type": "log", "message": line.decode().strip()}))
+
+        await process.wait()
+        url = f"/download/{output_file_name}"
+        await websocket.send_text(json.dumps({"type": "download_url", "url": url}))
+
+
+    except Exception as e:
+        await websocket.send_text(json.dumps({"type": "error", "message": str(e)}))
+
+    await websocket.close()
+
+# ec2 remove attack
+@router.websocket("/ws/attacks/direct/ec2-remove")
+async def ec2_remove_attack(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. 공격 시작..."}))
+
+    try:
+        init_data = await websocket.receive_text()
+        data = json.loads(init_data)
+        access_key = data.get("access_key")
+        secret_key = data.get("secret_key")
+        region = data.get("region")
+        ec2_instance_id = data.get("instance_id")
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
+
+        output_dir = os.path.join(os.getcwd(), "report")
+        output_file_name = f"ec2_remove_{timestamp}.md"
+        output_file = os.path.join(output_dir, output_file_name)
+        script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_remove.py")
 
         process = await asyncio.create_subprocess_exec(
             "python", script_path,
