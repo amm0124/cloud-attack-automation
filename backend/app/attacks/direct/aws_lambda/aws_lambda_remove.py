@@ -62,10 +62,13 @@ def main():
         args.region,
         args.function_name
     )
+
+
+
     with open(args.output_file, "w", encoding="utf-8") as f:
         f.write(result)
 
-    print("lambda 삭제 완료.")
+    print("lambda 삭제 공격 완료.")
 
 if __name__ == "__main__":
     main()
