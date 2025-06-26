@@ -25,23 +25,20 @@ import DirectTemporaryKeyAttackPage from "./pages/attacks/direct/persistence/Dir
 import Ec2StopAttackPage from "./pages/attacks/direct/ec2/Ec2StopAttackPage";
 import Ec2RemoveAttackPage from "./pages/attacks/direct/ec2/Ec2RemoveAttackPage";
 
-/*import DirectDosAttackPage from "./pages/attacks/direct/dos/DirectDosAttackPage";*/
-
 // direct attack - lambda
 import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/DirectLambdaInjectionAttackPage";
 import DirectLambdaDownloadAttackPage from "./pages/attacks/direct/lambda/DirectLambdaDownloadAttackPage";
 import DirectLambdaRemoveAttackPage from "./pages/attacks/direct/lambda/DirectLambdaRemoveAttackPage";
 
+// direct attack - s3
+import S3RemoveAttackPage from "./pages/attacks/direct/s3/S3RemoveAttackPage";
 
 
+// indirect attack - docker
 import IndirectAttackIndexPage from "./pages/attacks/indirect";
 import IndirectDockerAttackPage from "./pages/attacks/indirect/docker/IndirectDockerAttackPage";
 
-//import PolicyAttackIndexPage from "./pages/attacks/policy";
-//import PolicyMitmAttackPage from "./pages/attacks/policy/mitm/PolicyMitmAttackPage";
-
 import './App.css';
-
 
 function App() {
   return (
@@ -63,9 +60,11 @@ function App() {
         <Route path="/attacks/direct/ssh-brute-force" element={<DirectSshBruteForceAttackPage />} />
         <Route path="/attacks/direct/ssh-race-condition" element={<DirectSshRaceConditionAttackPage />} />
         <Route path="/attacks/direct/temporary-key" element={<DirectTemporaryKeyAttackPage />} />
-        {/*<Route path="/attacks/direct/dos" element={<DirectDosAttackPage />} />*/}
         <Route path="/attacks/direct/ec2-stop" element={<Ec2StopAttackPage />} />
         <Route path="/attacks/direct/ec2-remove" element={<Ec2RemoveAttackPage />} />
+
+        <Route path="/attacks/direct/s3-remove" element={<S3RemoveAttackPage />} />
+
 
 
         <Route path="/attacks/direct/lambda-injection" element={<DirectLambdaInjectionAttackPage />} />

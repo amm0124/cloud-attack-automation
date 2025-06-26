@@ -1,4 +1,4 @@
-# python s3_delete.py --access-key YOUR_ACCESS_KEY --secret-key YOUR_SECRET_KEY --region ap-northeast-2 --bucket-name my-bucket재시도Claude는 실수를 할 수 있습니다. 응답을 반드시 다시 확인해 주세요.
+# python s3_delete.py --access-key YOUR_ACCESS_KEY --secret-key YOUR_SECRET_KEY --region ap-northeast-2 --bucket-name my-bucket
 import boto3
 import argparse
 
@@ -57,6 +57,7 @@ def main():
     parser.add_argument('--secret-key', required=True, help='AWS Secret Key')
     parser.add_argument('--region', required=True, help='AWS Region')
     parser.add_argument('--bucket-name', required=True, help='S3 Bucket Name')
+    parser.add_argument('--output-file', required=True, help='S3 Bucket Name')
 
     args = parser.parse_args()
 
@@ -67,7 +68,10 @@ def main():
         args.bucket_name
     )
 
-    print(result)
+    with open(args.output_file, "w", encoding="utf-8") as f:
+        f.write(result)
+
+    print("S3 삭제 공격 완료.")
 
 if __name__ == "__main__":
     main()

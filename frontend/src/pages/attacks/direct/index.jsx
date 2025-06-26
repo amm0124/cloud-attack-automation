@@ -69,6 +69,15 @@ function DirectAttackIndexPage() {
             </div>
 
             <div className="option-card">
+                <h3>[S3] - S3 삭제</h3>
+                <p>공격 대상 : S3</p>
+                <ul>
+                    <li>AWS S3 삭제</li>
+                </ul>
+                <Link to="/attacks/direct/s3-remove" className="option-button">이동하기</Link>
+            </div>
+
+            <div className="option-card">
                 <h3>[Lambda] - Lambda 코드 다운로드</h3>
                 <p>공격 대상 : Lambda</p>
                 <ul>
@@ -99,7 +108,7 @@ function DirectAttackIndexPage() {
 
 
 
-
+//S3RemoveAttackPage
 
         </div>
       </div>
