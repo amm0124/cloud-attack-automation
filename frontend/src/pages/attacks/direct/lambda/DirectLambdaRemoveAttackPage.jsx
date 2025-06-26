@@ -31,7 +31,7 @@ function DirectLambdaRemoveAttackPage() {
         }
 
         // 새 WebSocket 연결 생성
-        const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/lambda-injection');
+        const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/remove-lambda');
         wsRef.current = ws;
 
         ws.onopen = () => {
@@ -59,13 +59,13 @@ function DirectLambdaRemoveAttackPage() {
                 setDownloadUrl(data.url);
                 setShowDownloadBtn(true);
             } else if (data.type === 'error') {
-                setLogs(prev => prev + '❌ 오류: ' + data.message + '\n');
+                setLogs(prev => prev + '오류: ' + data.message + '\n');
             }
         };
 
         ws.onerror = (error) => {
             console.error('WebSocket 오류:', error);
-            setLogs(prev => prev + '❌ 연결 오류가 발생했습니다.\n');
+            setLogs(prev => prev + '연결 오류가 발생했습니다.\n');
         };
     };
 
