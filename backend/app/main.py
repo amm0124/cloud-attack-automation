@@ -5,10 +5,10 @@ from analyzing.iam.router import router as iam_analyzer_router
 from analyzing.ec2.router import router as ec2_analyzer_router
 from analyzing.s3.router import router as s3_analyzer_router
 from analyzing.aws_lambda.router import router as lambda_analyzer_router
-#from attacks.direct.router import router as ssh_brute_force_direct_attack_router
+
 
 from attacks.direct.aws_ec2.router import router as aws_ec2_direct_attack_router
-
+from attacks.direct.aws_lambda.router import router as aws_lambda_injection_routers
 
 from fastapi.responses import StreamingResponse
 from fastapi import HTTPException
@@ -19,10 +19,10 @@ app.include_router(iam_analyzer_router)
 app.include_router(ec2_analyzer_router)
 app.include_router(s3_analyzer_router)
 app.include_router(lambda_analyzer_router)
-#app.include_router(ssh_brute_force_direct_attack_router)
-#app.include_router(aws_lambda_injection_routers)
-app.include_router(aws_ec2_direct_attack_router)
 
+# direct attack routers
+app.include_router(aws_ec2_direct_attack_router)
+app.include_router(aws_lambda_injection_routers)
 
 REPORTS_DIR = "/Users/geonho/workspace/cloud-attack-automation/backend/app/report" # 보고서 저장 경로
 

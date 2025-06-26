@@ -31,7 +31,7 @@ import Ec2RemoveAttackPage from "./pages/attacks/direct/ec2/Ec2RemoveAttackPage"
 import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/DirectLambdaInjectionAttackPage";
 import DirectLambdaDownloadAttackPage from "./pages/attacks/direct/lambda/DirectLambdaDownloadAttackPage";
 import DirectLambdaRemoveAttackPage from "./pages/attacks/direct/lambda/DirectLambdaRemoveAttackPage";
-
+import DirectLambdaStopAttackPage from "./pages/attacks/direct/lambda/DirectLambdaStopAttackPage";
 
 
 import IndirectAttackIndexPage from "./pages/attacks/indirect";
@@ -71,7 +71,7 @@ function App() {
         <Route path="/attacks/direct/lambda-injection" element={<DirectLambdaInjectionAttackPage />} />
         <Route path="/attacks/direct/download-lambda" element={<DirectLambdaDownloadAttackPage/>} />
         <Route path="/attacks/direct/remove-lambda" element={<DirectLambdaRemoveAttackPage/>} />
-
+        <Route path="/attacks/direct/stop-lambda" element={<DirectLambdaStopAttackPage/>} />
 
         <Route path="/attacks/indirect" element={<IndirectAttackIndexPage />} />
         <Route path="/attacks/indirect/docker" element={<IndirectDockerAttackPage />} />

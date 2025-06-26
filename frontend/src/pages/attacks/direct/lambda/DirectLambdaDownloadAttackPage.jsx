@@ -31,7 +31,7 @@ function DirectLambdaDownloadAttackPage() {
         }
 
         // 새 WebSocket 연결 생성
-        const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/lambda-injection');
+        const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/download-lambda');
         wsRef.current = ws;
 
         ws.onopen = () => {
