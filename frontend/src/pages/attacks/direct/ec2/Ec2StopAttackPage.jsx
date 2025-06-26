@@ -16,8 +16,6 @@ function Ec2StopAttackPage() {
         const secretKey = document.getElementById('secret-key').value;
         const region = document.getElementById('region').value;
         const instanceId = document.getElementById('instance-id').value;
-        const keyPairName = document.getElementById('key-pair-name').value;
-
 
         const output = document.getElementById('output');
 
@@ -32,7 +30,7 @@ function Ec2StopAttackPage() {
         }
 
         // 새 WebSocket 연결 생성
-        const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/ssh-temp-key');
+        const ws = new WebSocket('ws://localhost:8000/ws/attacks/direct/ec2-stop');
         wsRef.current = ws;
 
         ws.onopen = () => {
@@ -41,8 +39,7 @@ function Ec2StopAttackPage() {
                 access_key: accessKey,
                 secret_key: secretKey,
                 region: region,
-                instance_id: instanceId,
-                keypair_name: keyPairName,
+                instance_id: instanceId
             }));
         };
 
@@ -81,8 +78,8 @@ function Ec2StopAttackPage() {
     return (
         <Layout>
             <div className="scanning-page">
-                <h2>EC2 임시 키 발급</h2>
-                <p className="page-description">새로운 EC2 키 발급을 통한 지속적 공격 확보</p>
+                <h2>EC2 중지</h2>
+                <p className="page-description">EC2 서비스 완전 중지</p>
 
                 <div className="scan-form">
                     <div className="form-group">
@@ -121,25 +118,15 @@ function Ec2StopAttackPage() {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="target">key pair name</label>
-                        <input
-                            type="text"
-                            id="key-pair-name"
-                            placeholder="생성하고자 하는 key pair 이름 입력"
-                        />
-                    </div>
-
-
                     <div className="button-group">
-                        <button className="start-btn" onClick={startScan}>키 발급 시작</button>
+                        <button className="start-btn" onClick={startScan}>공격 시작</button>
 
                         {showDownloadBtn && (
                             <button
                                 className="download-btn"
                                 onClick={downloadReport}
                             >
-                                📄 키 다운로드
+                                📄 결과 다운로드
                             </button>
                         )}
                     </div>
