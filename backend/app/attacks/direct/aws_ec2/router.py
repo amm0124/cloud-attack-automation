@@ -11,18 +11,24 @@ router = APIRouter()
 @router.websocket("/ws/attacks/direct/ssh-brute-force")
 async def ssh_brute_force_attack(websocket: WebSocket):
     await websocket.accept()
-    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. 공격 시작..."}))
+    await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. SSH Brute Force 공격 시작..."}))
 
     try:
         init_data = await websocket.receive_text()
         data = json.loads(init_data)
         target_ip = data.get("target_ip")
 
-        script_path = os.path.join(os.path.dirname(__file__), "ssh_brute_force.py")
+        await websocket.send_text(json.dumps({"type": "log", "message": "WebSocket 연결됨. target_ip: " + target_ip}))
+
+        script_path = os.path.join(os.path.dirname(__file__), "aws_ec2_ssh_brute_force.py")
         user_file_path = os.path.join(os.path.dirname(__file__), "user.txt")
         password_file_path = os.path.join(os.path.dirname(__file__), "password.txt")
+
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
-        output_file = f"ssh_brute_force_{timestamp}.md"
+
+        output_dir = os.path.join(os.getcwd(), "report")
+        output_file_name = f"ssh_brute_force_{timestamp}.md"
+        output_file = os.path.join(output_dir, output_file_name)
 
         process = await asyncio.create_subprocess_exec(
             "python", script_path,
@@ -42,7 +48,7 @@ async def ssh_brute_force_attack(websocket: WebSocket):
 
         await process.wait()
 
-        url = f"/download/{output_file}"
+        url = f"/download/{output_file_name}"
         await websocket.send_text(json.dumps({"type": "download_url", "url": url}))
 
     except Exception as e:

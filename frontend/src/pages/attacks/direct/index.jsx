@@ -65,7 +65,7 @@ function DirectAttackIndexPage() {
                 <ul>
                     <li>EC2 서비스 완전 삭제</li>
                 </ul>
-                <Link to="/attacks/direct/dos" className="option-button">이동하기</Link>
+                <Link to="/attacks/direct/ec2-remove" className="option-button">이동하기</Link>
             </div>
 
             <div className="option-card">

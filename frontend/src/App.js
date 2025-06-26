@@ -23,7 +23,7 @@ import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/Direc
 
 // new
 import Ec2StopAttackPage from "./pages/attacks/direct/ec2/Ec2StopAttackPage";
-
+import Ec2RemoveAttackPage from "./pages/attacks/direct/ec2/Ec2RemoveAttackPage";
 
 
 import IndirectAttackIndexPage from "./pages/attacks/indirect";
@@ -57,7 +57,7 @@ function App() {
         <Route path="/attacks/direct/temporary-key" element={<DirectTemporaryKeyAttackPage />} />
         <Route path="/attacks/direct/dos" element={<DirectDosAttackPage />} />
         <Route path="/attacks/direct/ec2-stop" element={<Ec2StopAttackPage />} />
-
+        <Route path="/attacks/direct/ec2-remove" element={<Ec2RemoveAttackPage />} />
 
 
         <Route path="/attacks/direct/lambda-injection" element={<DirectLambdaInjectionAttackPage />} />
