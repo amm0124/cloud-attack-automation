@@ -22,7 +22,7 @@ import DirectDosAttackPage from "./pages/attacks/direct/dos/DirectDosAttackPage"
 import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/DirectLambdaInjectionAttackPage";
 
 // new
-
+import Ec2StopAttackPage from "./pages/attacks/direct/ec2/Ec2StopAttackPage";
 
 
 
@@ -51,14 +51,21 @@ function App() {
         <Route path="/attacks" element={<AttackIndexPage />} />
 
         <Route path="/attacks/direct" element={<DirectAttackIndexPage />} />
+
         <Route path="/attacks/direct/ssh-brute-force" element={<DirectSshBruteForceAttackPage />} />
         <Route path="/attacks/direct/ssh-race-condition" element={<DirectSshRaceConditionAttackPage />} />
         <Route path="/attacks/direct/temporary-key" element={<DirectTemporaryKeyAttackPage />} />
         <Route path="/attacks/direct/dos" element={<DirectDosAttackPage />} />
+        <Route path="/attacks/direct/ec2-stop" element={<Ec2StopAttackPage />} />
+
+
+
         <Route path="/attacks/direct/lambda-injection" element={<DirectLambdaInjectionAttackPage />} />
 
         <Route path="/attacks/indirect" element={<IndirectAttackIndexPage />} />
         <Route path="/attacks/indirect/docker" element={<IndirectDockerAttackPage />} />
+
+
 
         {/*<Route path="/attacks/policy" element={<PolicyAttackIndexPage />} />*/}
         {/*<Route path="/attacks/policy/mitm" element={<PolicyMitmAttackPage />} />*/}
