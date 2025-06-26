@@ -87,15 +87,6 @@ function DirectAttackIndexPage() {
             <Link to="/attacks/direct/lambda-injection" className="option-button">이동하기</Link>
           </div>
 
-            <div className="option-card">
-                <h3>[Lambda] - Lambda 중지</h3>
-                <p>공격 대상 : Lambda</p>
-                <ul>
-                    <li>AWS Lambda 중지</li>
-                </ul>
-                <Link to="/attacks/direct/stop-lambda" className="option-button">이동하기</Link>
-            </div>
-
 
             <div className="option-card">
                 <h3>[Lambda] - Lambda 삭제</h3>

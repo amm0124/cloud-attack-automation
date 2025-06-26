@@ -83,7 +83,7 @@ async def aws_lambda_injection(websocket: WebSocket):
             "--secret-key", secret_key,
             "--region", region,
             "--function-name", function_name,
-            "--file", malicious_code_path,
+            "--zip-file", malicious_code_path,
             "--output", output_file,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,
