@@ -52,13 +52,13 @@ function DirectSshRaceConditionAttackPage() {
         setDownloadUrl(data.url);
         setShowDownloadBtn(true);
       } else if (data.type === 'error') {
-        setLogs(prev => prev + '❌ 오류: ' + data.message + '\n');
+        setLogs(prev => prev + '오류: ' + data.message + '\n');
       }
     };
 
     ws.onerror = (error) => {
       console.error('WebSocket 오류:', error);
-      setLogs(prev => prev + '❌ 연결 오류가 발생했습니다.\n');
+      setLogs(prev => prev + '연결 오류가 발생했습니다.\n');
     };
   };
 
@@ -72,8 +72,8 @@ function DirectSshRaceConditionAttackPage() {
   return (
     <Layout>
       <div className="scanning-page">
-        <h2>SSH Race Condition attack</h2>
-        <p className="page-description">SSH Race Condition attack</p>
+        <h2>SSH Race Condition 공격</h2>
+        <p className="page-description">OpenSSH 버전 8.5p1이상 9.8p1미만의 EC2를 대상으로 CVE 2024-6387 공격 수행</p>
 
         <div className="scan-form">
           <div className="form-group">

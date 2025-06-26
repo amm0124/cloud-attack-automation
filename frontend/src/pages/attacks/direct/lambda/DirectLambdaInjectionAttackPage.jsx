@@ -79,50 +79,50 @@ function DirectLambdaInjectionAttackPage() {
   return (
     <Layout>
       <div className="scanning-page">
-        <h2>DirectLambdaInjectionAttackPage</h2>
-        <p className="page-description">DirectLambdaInjectionAttackPage</p>
+        <h2>Lambda 악성 코드 삽입</h2>
+        <p className="page-description">AWS Lambda 대상으로 악성 코드를 삽입합니다.</p>
 
         <div className="scan-form">
           <div className="form-group">
-            <label htmlFor="target">lambda access key</label>
+            <label htmlFor="target">Access Key</label>
             <input
               type="text"
               id="access-key"
-              placeholder="lambda access key"
+              placeholder="Access Key"
             />
           </div>
 
 
           <div className="form-group">
-            <label htmlFor="target">lambda secret key</label>
+            <label htmlFor="target">Secret Key</label>
             <input
               type="text"
               id="secret-key"
-              placeholder="lambda secret key"
+              placeholder="Secret Key"
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="target">lambda region</label>
+            <label htmlFor="target">Region</label>
             <input
               type="text"
               id="region"
-              placeholder="lambda regions"
+              placeholder="Regions"
             />
           </div>
 
            <div className="form-group">
-            <label htmlFor="target">lambda function name</label>
+            <label htmlFor="target">Lambda Function Name</label>
             <input
               type="text"
               id="function-name"
-              placeholder="lambda function name"
+              placeholder="Lambda Function Name"
             />
           </div>
 
 
           <div className="button-group">
-            <button className="start-btn" onClick={startScan}>스캔 시작</button>
+            <button className="start-btn" onClick={startScan}>공격 시작</button>
 
             {showDownloadBtn && (
               <button

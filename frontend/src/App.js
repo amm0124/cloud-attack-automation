@@ -13,17 +13,25 @@ import LambdaAnalyzingPage from "./pages/analyzing/lambda/LambdaAnalyzePage";
 import AttackIndexPage from "./pages/attacks";
 
 
-// legacy import
+
+
+
+// direct attack - ec2
 import DirectAttackIndexPage from "./pages/attacks/direct";
+
 import DirectSshBruteForceAttackPage from "./pages/attacks/direct/ssh/DirectSshBruteForceAttackPage";
 import DirectSshRaceConditionAttackPage from "./pages/attacks/direct/ssh/DirectSshRaceConditionAttackPage";
 import DirectTemporaryKeyAttackPage from "./pages/attacks/direct/persistence/DirectTemporaryKeyAttackPage";
-import DirectDosAttackPage from "./pages/attacks/direct/dos/DirectDosAttackPage";
-import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/DirectLambdaInjectionAttackPage";
-
-// new
 import Ec2StopAttackPage from "./pages/attacks/direct/ec2/Ec2StopAttackPage";
 import Ec2RemoveAttackPage from "./pages/attacks/direct/ec2/Ec2RemoveAttackPage";
+
+/*import DirectDosAttackPage from "./pages/attacks/direct/dos/DirectDosAttackPage";*/
+
+// direct attack - lambda
+import DirectLambdaInjectionAttackPage from "./pages/attacks/direct/lambda/DirectLambdaInjectionAttackPage";
+import DirectLambdaDownloadAttackPage from "./pages/attacks/direct/lambda/DirectLambdaDownloadAttackPage";
+import DirectLambdaRemoveAttackPage from "./pages/attacks/direct/lambda/DirectLambdaRemoveAttackPage";
+
 
 
 import IndirectAttackIndexPage from "./pages/attacks/indirect";
@@ -55,12 +63,15 @@ function App() {
         <Route path="/attacks/direct/ssh-brute-force" element={<DirectSshBruteForceAttackPage />} />
         <Route path="/attacks/direct/ssh-race-condition" element={<DirectSshRaceConditionAttackPage />} />
         <Route path="/attacks/direct/temporary-key" element={<DirectTemporaryKeyAttackPage />} />
-        <Route path="/attacks/direct/dos" element={<DirectDosAttackPage />} />
+        {/*<Route path="/attacks/direct/dos" element={<DirectDosAttackPage />} />*/}
         <Route path="/attacks/direct/ec2-stop" element={<Ec2StopAttackPage />} />
         <Route path="/attacks/direct/ec2-remove" element={<Ec2RemoveAttackPage />} />
 
 
         <Route path="/attacks/direct/lambda-injection" element={<DirectLambdaInjectionAttackPage />} />
+        <Route path="/attacks/direct/download-lambda" element={<DirectLambdaDownloadAttackPage/>} />
+        <Route path="/attacks/direct/remove-lambda" element={<DirectLambdaRemoveAttackPage/>} />
+
 
         <Route path="/attacks/indirect" element={<IndirectAttackIndexPage />} />
         <Route path="/attacks/indirect/docker" element={<IndirectDockerAttackPage />} />

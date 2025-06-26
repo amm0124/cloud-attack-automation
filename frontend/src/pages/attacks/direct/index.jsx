@@ -41,14 +41,14 @@ function DirectAttackIndexPage() {
                 <Link to="/attacks/direct/temporary-key" className="option-button">이동하기</Link>
           </div>
 
-            <div className="option-card">
-            <h3>[EC2] - EC2 DoS</h3>
-            <p>공격 대상 : EC2</p>
-            <ul>
-              <li>EC2를 대상으로 DoS(Denial of Service) 공격 수행</li>
-            </ul>
-            <Link to="/attacks/direct/dos" className="option-button">이동하기</Link>
-          </div>
+          {/*  <div className="option-card">*/}
+          {/*  <h3>[EC2] - EC2 DoS</h3>*/}
+          {/*  <p>공격 대상 : EC2</p>*/}
+          {/*  <ul>*/}
+          {/*    <li>EC2를 대상으로 DoS(Denial of Service) 공격 수행</li>*/}
+          {/*  </ul>*/}
+          {/*  <Link to="/attacks/direct/dos" className="option-button">이동하기</Link>*/}
+          {/*</div>*/}
 
             <div className="option-card">
                 <h3>[EC2] - EC2 중지</h3>
@@ -72,9 +72,9 @@ function DirectAttackIndexPage() {
                 <h3>[Lambda] - Lambda 코드 다운로드</h3>
                 <p>공격 대상 : Lambda</p>
                 <ul>
-                    <li>AWS Lambda에 올라온 코드를 다운로드</li>
+                    <li>AWS Lambda에 올라온 코드 다운로드</li>
                 </ul>
-                <Link to="/attacks/direct/lambda-injection" className="option-button">이동하기</Link>
+                <Link to="/attacks/direct/download-lambda" className="option-button">이동하기</Link>
             </div>
 
 
@@ -93,7 +93,7 @@ function DirectAttackIndexPage() {
                 <ul>
                     <li>AWS Lambda 대상 삭제</li>
                 </ul>
-                <Link to="/attacks/direct/lambda-injection" className="option-button">이동하기</Link>
+                <Link to="/attacks/direct/remove-lambda" className="option-button">이동하기</Link>
             </div>
 
 
