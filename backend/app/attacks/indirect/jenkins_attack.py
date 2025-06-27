@@ -32,20 +32,18 @@ async def send_download_request(target_info, uuid_str, websocket, report_file):
         # 실제 요청 시 사용
         #response = conn.getresponse().read().decode("utf-8", errors="replace")
 
-        response = ("9fc7a431dc22a192d627b5f015a726d8c2cf984a29ed1aa21309605410be\n"
-                    "0206227ebf2f7d269f0e9f1bf2dcdf8273afdab09d08a505cec42c55e3d4\n"
-                    "d5882cdfab3a713dc76a2605ffded624378401fa1a9046c404b68617a9c8\n"
-                    "78cb54df9b52d572c791510b164120882eb95fe444cc3618b368360c845d\n"
-                    "4ce4bfb13990ebba")
+        response = "7fd928eb5672432888c279d6d334990c"
 
         if websocket:
             await websocket.send_text(json.dumps({"type": "log", "message": "download request success"}))
-            await websocket.send_text(json.dumps({"type": "log", "message": "master-key:\n" + response}))
+            await websocket.send_text(json.dumps({"type": "log", "message": "\ninitial password: " + response}))
+            await websocket.send_text(json.dumps({"type": "log", "message": "encrypted password: #jbcrypt:$2a$10$BKUxdQg4P97UTJUkmf810efk.kSLNChw4EMXv6E4la.I.6dUoQiCi"}))
+            await websocket.send_text(json.dumps({"type": "log", "message": "decrypted password: " + response}))
 
         # 보고서 파일에 저장
         with open(report_file, "a", encoding="utf-8") as f:
             f.write("\n===== Download Request Result =====\n")
-            f.write("master-key:\n" + response)
+            f.write("initial password: " + response)
             f.write("\n")
 
         return
@@ -118,7 +116,7 @@ async def launch_exploit(target_url: str, file_path: str, websocket=None):
     await send_download_request(target_info, uuid_str, websocket, report_file)
 
     # 공격 완료 로그 기록 및 WebSocket 전송
-    done_msg = f"Attack finished. Report saved to {report_file}"
+    done_msg = f"\nAttack finished. Report saved to {report_file}"
     if websocket:
         await websocket.send_text(json.dumps({"type": "log", "message": done_msg}))
         await websocket.send_text(json.dumps({"type": "done", "message": done_msg}))
